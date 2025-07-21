@@ -12,13 +12,12 @@ const connectDB = async () => {
     throw new Error("Missing MongoDB URL");
   }
 
-  try {
-    await mongoose.connect(mongoURL);
-    console.log("Successfully connected to MongoDB.");
-  } catch (err) {
-    console.error(`Could not connect to MongoDB: ${err.message}`);
-    throw err;
-  }
+  
+    mongoose
+      .connect(mongoURL)
+      .then(() => console.log("Connected to MongoDB"))
+      .catch((err) => console.error("MongoDB connection error:", err));
+  
 };
 
 export default connectDB;
